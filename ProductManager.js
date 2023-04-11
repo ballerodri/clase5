@@ -70,6 +70,29 @@ export class ProductManager {
 
 }
 
+class Product {
+    constructor(title = "", description = "", price = 0, thumbnail = "", code = "", stock = 0) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.code = code;
+        this.stock = stock;
+    }
+}
+
 const prod = new ProductManager('./info.txt')
 
+const producto = new Product("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25)
+const productoM = new Product("producto prueba modificacion", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25)
+
 prod.getProducts().then(prod => console.log(prod))
+await prod.addProduct(producto).then(prod => console.log(prod))
+prod.getProducts().then(prod => console.log(prod))
+prod.getProductById(1).then(prod => console.log(prod))
+prod.getProductById(2).then(prod => console.log(prod))
+await prod.updateProduct(1, productoM).then(prod => console.log(prod))
+prod.getProducts().then(prod => console.log(prod))
+await prod.deleteProduct(1).then(prod => console.log(prod))
+prod.getProducts().then(prod => console.log(prod))
+await prod.deleteProduct(1).then(prod => console.log(prod))
